@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
         float yMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
         transform.Translate(xMovement, 0, yMovement);
 
-        
+
     }
+}
 
