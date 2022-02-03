@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     public Transform playerObj;
     protected NavMeshAgent enemyMesh;
 
+    public float damage = 25f;
+
 
     void Start()
     {
@@ -20,11 +22,7 @@ public class EnemyController : MonoBehaviour
         enemyMesh.SetDestination(playerObj.position);
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (gameObject.CompareTag("Bullet"))
-    //    {
-    //        Debug.Log("OHO");
-    //    }
-    //}
+
+
+    
 }
