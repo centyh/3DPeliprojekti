@@ -7393,7 +7393,6 @@ crashlytics-build.properties
 3DPeliprojekti/3DProjekti/Library/ShaderCache/e/e7717720213898a9e7b2d2ab98559b5c.bin
 3DPeliprojekti/3DProjekti/Library/ShaderCache/e/e7b8400e396c9ab86b02e7dbca1475e3.bin
 3DPeliprojekti/3DProjekti/Library/ShaderCache/f/f267051c140fc09746ef6f3ded20ebf6.bin
-*.bin
 3DPeliprojekti/3DProjekti/Library/Artifacts/05/05d6bd124c25743394c4d9d821e7ba47
 3DPeliprojekti/3DProjekti/Library/Artifacts/06/06d06abe156a14b062b16be4aca8d702
 3DPeliprojekti/3DProjekti/Library/Artifacts/17/175a5a63a8403441653b8fd61f580c9a
@@ -7480,3 +7479,7 @@ crashlytics-build.properties
 3DPeliprojekti/3DProjekti/Library/Artifacts/fc/fcec52518721a934cf21ab583126f789
 3DPeliprojekti/3DProjekti/Library/Artifacts/fe/fe7d7701fdfd7260ea146e21df8d2764
 3DPeliprojekti/3DProjekti/Library/Artifacts/ff/ffe31471ccf42424b282dde8b4576a06
+3DPeliprojekti/3DProjekti/Library/ShaderCache/3/3228f8dd5312f4a26392ae9df1d30fb6.bin
+3DPeliprojekti/3DProjekti/Library/ShaderCache/5/5c62e25a3d8f3ff190682e00710898d3.bin
+3DPeliprojekti/3DProjekti/Library/ShaderCache/7/75f7c8a5e572843795dbc83c9696e0c2.bin
+3DPeliprojekti/3DProjekti/Library/ShaderCache/b/bb64bb75793d2438f41deb5da33605cf.bin
