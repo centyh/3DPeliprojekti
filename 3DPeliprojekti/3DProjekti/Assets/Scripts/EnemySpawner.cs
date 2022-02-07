@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject[] enemyPrefab;
+    public Transform[] spawnPoints;
+
+    private int randPosition;
+
     void Start()
-    {
-        
+    { 
+
+        for(int i = 0; i < enemyPrefab.Length; i++)
+        {
+            randPosition = Random.Range(0, spawnPoints.Length);
+            enemyPrefab[i] = Instantiate(enemyPrefab[i], spawnPoints[randPosition].position, Quaternion.identity);
+        }
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
