@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public float moveSpeed;
+    public float runSpeed;
 
     public bool isAlive = true;
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
 
 
     }
@@ -24,7 +24,13 @@ public class Player : MonoBehaviour
         float yMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
         transform.Translate(xMovement, 0, yMovement);
 
-
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            float xRunMovement = Input.GetAxis("Horizontal") * runSpeed * Time.deltaTime;
+            float yRunMovement = Input.GetAxis("Vertical") * runSpeed * Time.deltaTime;
+            transform.Translate(xRunMovement, 0, yRunMovement);
+            Debug.Log("Juokset tällä hetkellä");
+        }
     }
 }
 
