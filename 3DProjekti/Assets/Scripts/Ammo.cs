@@ -88,6 +88,8 @@ public class Ammo : MonoBehaviour
             targetPoint = ray.GetPoint(75);
         }
 
+        
+
         Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
 
         GameObject currentBullet = Instantiate(bullet,  attackPoint.position, Quaternion.identity);

@@ -542,7 +542,7 @@ Transform:
   - {fileID: 1748726522}
   - {fileID: 1258693534}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &287913993
 GameObject:
@@ -1842,16 +1842,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eb55beb4d25354c9c66db6560ab681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab:
-  - {fileID: 109668062025019148, guid: f12a7baafe8108a4dae56f5ab9cd2c53, type: 3}
-  - {fileID: 109668062025019148, guid: f12a7baafe8108a4dae56f5ab9cd2c53, type: 3}
-  - {fileID: 109668062025019148, guid: f12a7baafe8108a4dae56f5ab9cd2c53, type: 3}
-  - {fileID: 109668062025019148, guid: f12a7baafe8108a4dae56f5ab9cd2c53, type: 3}
-  - {fileID: 109668062025019148, guid: f12a7baafe8108a4dae56f5ab9cd2c53, type: 3}
+  waves:
+  - name: Level 1
+    enemy: {fileID: 109668062025019147, guid: f12a7baafe8108a4dae56f5ab9cd2c53, type: 3}
+    count: 4
+    rate: 1
+  - name: Level2
+    enemy: {fileID: 109668062025019147, guid: f12a7baafe8108a4dae56f5ab9cd2c53, type: 3}
+    count: 6
+    rate: 1
+  - name: Level3
+    enemy: {fileID: 109668062025019147, guid: f12a7baafe8108a4dae56f5ab9cd2c53, type: 3}
+    count: 8
+    rate: 1
   spawnPoints:
   - {fileID: 1858379328}
   - {fileID: 1843596888}
   - {fileID: 807523680}
+  timeBetweenWaves: 5
+  waveCountdown: 0
 --- !u!4 &840252232
 Transform:
   m_ObjectHideFlags: 0
@@ -1864,7 +1873,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &922201683
 GameObject:
@@ -4585,7 +4594,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1653671908
 GameObject:
@@ -5870,7 +5879,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2136155275
 GameObject:

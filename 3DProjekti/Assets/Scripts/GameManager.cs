@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(level1Screen());
+        //StartCoroutine(level1Screen());
     }
 
 
@@ -17,10 +17,10 @@ public class GameManager : MonoBehaviour
         
     }
 
-    IEnumerator level1Screen()
-    {
-        level1.SetActive(true);
-        yield return new WaitForSeconds(4);
-        level1.SetActive(false);
-    }
+    //IEnumerator level1Screen()
+    //{
+    //    level1.SetActive(true);
+    //    yield return new WaitForSeconds(4);
+    //    level1.SetActive(false);
+    //}
 }
