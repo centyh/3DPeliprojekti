@@ -19,13 +19,14 @@ public class EnemyController : MonoBehaviour
         enemyMesh = GetComponent<NavMeshAgent>();
         playerObj = GameObject.FindGameObjectWithTag("Player");
 
-        health = maxHealth;
+        health = maxHealth;     
     }
 
 
     void Update()
     {
         enemyMesh.SetDestination(playerObj.transform.position);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -48,6 +49,7 @@ public class EnemyController : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
+            GameManager.currentScore += 50;
         }
     }
 }

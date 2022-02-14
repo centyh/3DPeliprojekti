@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Enemy
+  - HealthItem
+  - AmmoItem
   layers:
   - Default
   - TransparentFX
