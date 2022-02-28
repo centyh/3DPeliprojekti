@@ -9,10 +9,12 @@ public class Ammo : MonoBehaviour
 
     public GameObject bullet;
 
+    public static int damage = 20;
+
     public float shootForce;
 
     public float timeBetweenShooting, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPerTap, damage;
+    public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
 
     int bulletsLeft, bulletsShot;

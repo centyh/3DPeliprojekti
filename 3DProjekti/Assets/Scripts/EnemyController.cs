@@ -42,8 +42,8 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            health -= 50f;
-            Debug.Log("Viholliseen osui");
+            health -= Ammo.damage;
+            Debug.Log("Viholliseen osui: " + Ammo.damage);
         }
 
         if(health <= 0)
