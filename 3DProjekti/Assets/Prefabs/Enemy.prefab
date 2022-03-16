@@ -150,4 +150,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObj: {fileID: 0}
   damage: 5
-  maxHealth: 200
+  maxHealth: 400
