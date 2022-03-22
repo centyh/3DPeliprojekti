@@ -6,27 +6,29 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject level1;
-    public TextMeshProUGUI scoreText;
 
-    public static float currentScore;
+
+    
+    
+
+    
+
+    public EnemySpawner enemySpawner;
 
     void Start()
     {
-        currentScore = 0f;
         
-        //StartCoroutine(level1Screen());
+        enemySpawner = FindObjectOfType<EnemySpawner>().GetComponent<EnemySpawner>();
+
     }
 
 
     void Update()
     {
-        scoreText.text = "Score: " + currentScore;
+        
+
+        
     }
 
-    //IEnumerator level1Screen()
-    //{
-    //    level1.SetActive(true);
-    //    yield return new WaitForSeconds(4);
-    //    level1.SetActive(false);
-    //}
+
 }

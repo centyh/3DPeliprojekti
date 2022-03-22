@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -18,10 +20,14 @@ public class EnemySpawner : MonoBehaviour
         public float rate;
     }
 
-    
-    private int nextWave = 0;
+    public TextMeshProUGUI countdownText;
 
-    public float timeBetweenWaves = 5f;
+    public float currentTime = 0f;
+
+
+    public int nextWave = 0;
+
+    public float timeBetweenWaves = 10f;
     public float waveCountdown;
 
     private float searchCountdown = 1f;
@@ -58,9 +64,23 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
+            
             waveCountdown -= Time.deltaTime;
+            countdownText.text = "Next level starts: " + waveCountdown.ToString("0");
+
+            if(waveCountdown <= 0)
+            {
+                countdownText.enabled = false;
+            }
+            else
+            {
+                countdownText.enabled = true;
+            }
         }
+
+        
     }
+
 
     void WaveCompleted()
     {
@@ -69,7 +89,7 @@ public class EnemySpawner : MonoBehaviour
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
 
-        if(nextWave + 1 > waves.Length - 1)
+        if (nextWave + 1 > waves.Length - 1)
         {
             nextWave = 0;
             Debug.Log("All waves completed");
