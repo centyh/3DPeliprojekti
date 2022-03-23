@@ -24,6 +24,6 @@ public class MainMenu : MonoBehaviour
 
     public void SurvivalMode()
     {
-        SceneManager.LoadScene("Survival");
+        SceneManager.LoadScene("CharacterSelection");
     }
 }

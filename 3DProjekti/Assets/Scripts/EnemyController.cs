@@ -50,7 +50,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Elämiä jäljellä: " + health);
         }
 
-        if (health <= 0)
+        if (health == 0)
         {
             Destroy(gameObject, 3f);
             uiManager.currentScore += 50;
