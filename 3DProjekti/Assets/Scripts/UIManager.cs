@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject shopView;
 
-    bool isPaused = false;
+    public static bool isPaused = false;
 
     public EnemySpawner enemySpawner;
     public GameManager gameManager;
@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
 
         enemySpawner = FindObjectOfType<EnemySpawner>().GetComponent<EnemySpawner>();
         gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+
+        pauseMenu.SetActive(false);
 
     }
 
@@ -70,14 +72,22 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0;
-            isPaused = true;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-        }
-        
-      
+            if (isPaused)
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1;
+                isPaused = false;
+                
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+                isPaused = true;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+            }           
+        }     
     }
 
     public void ContinueGame()

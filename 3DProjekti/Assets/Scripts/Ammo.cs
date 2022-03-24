@@ -107,6 +107,11 @@ public class Ammo : MonoBehaviour
             Invoke("ResetShot", timeBetweenShooting);
             allowInvoke = false;
         }
+
+        if(bulletsShot < bulletsPerTap && bulletsLeft > 0)
+        {
+            Invoke("Shoot", timeBetweenShots);
+        }
         
     }
 

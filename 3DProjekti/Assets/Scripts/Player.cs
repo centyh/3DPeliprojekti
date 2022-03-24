@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
         float xMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float yMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
         transform.Translate(xMovement, 0, yMovement);
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
             transform.Translate(xRunMovement, 0, yRunMovement);
             Debug.Log("Juokset tällä hetkellä");
         }
+
 
         Death();
     }

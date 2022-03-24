@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
