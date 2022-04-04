@@ -585,7 +585,7 @@ ParticleSystemRenderer:
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
-  m_MinParticleSize: 0.1
+  m_MinParticleSize: 0.18
   m_MaxParticleSize: 0.81
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
@@ -6733,7 +6733,7 @@ ParticleSystemRenderer:
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
-  m_MinParticleSize: 0.09
+  m_MinParticleSize: 0.18
   m_MaxParticleSize: 0.81
   m_CameraVelocityScale: 0
   m_VelocityScale: 0

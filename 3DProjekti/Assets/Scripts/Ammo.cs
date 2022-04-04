@@ -5,6 +5,7 @@ using TMPro;
 
 public class Ammo : MonoBehaviour
 {
+
     public TextMeshProUGUI ammunitionDisplay;
 
     public GameObject bullet;
@@ -26,6 +27,10 @@ public class Ammo : MonoBehaviour
 
     bool allowInvoke;
 
+    private void Start()
+    {
+
+    }
 
     private void Awake()
     {
@@ -94,6 +99,7 @@ public class Ammo : MonoBehaviour
 
         Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
 
+ 
         GameObject currentBullet = Instantiate(bullet,  attackPoint.position, Quaternion.identity);
         Destroy(currentBullet, 2f);
 

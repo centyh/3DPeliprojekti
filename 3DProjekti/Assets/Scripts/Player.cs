@@ -11,9 +11,11 @@ public class Player : MonoBehaviour
 
     public bool isAlive = true;
 
+    
+
     void Start()
     {
-        
+
 
 
     }
@@ -38,6 +40,9 @@ public class Player : MonoBehaviour
         Death();
     }
 
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("HealthItem"))
@@ -52,6 +57,7 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
 
     void Death()
     {
