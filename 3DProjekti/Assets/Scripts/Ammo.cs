@@ -78,6 +78,7 @@ public class Ammo : MonoBehaviour
         }
     }
 
+
     private void Shoot()
     {
         readyToShoot = true;
@@ -117,6 +118,7 @@ public class Ammo : MonoBehaviour
         if(bulletsShot < bulletsPerTap && bulletsLeft > 0)
         {
             Invoke("Shoot", timeBetweenShots);
+            
         }
         
     }

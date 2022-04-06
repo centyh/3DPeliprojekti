@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public float moveSpeed;
-    public float runSpeed;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float runSpeed;
+
 
     public bool isAlive = true;
 
-    
 
     void Start()
     {
@@ -37,10 +37,13 @@ public class Player : MonoBehaviour
         }
 
 
+
         Death();
     }
 
+    
 
+    
 
 
     private void OnTriggerEnter(Collider other)
@@ -67,5 +70,8 @@ public class Player : MonoBehaviour
 
         }
     }
+
+
+   
 }
 

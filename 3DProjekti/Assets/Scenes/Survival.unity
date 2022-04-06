@@ -834,6 +834,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29699e7cb345a5641aa6a0690a76ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  acceleration: 2
+  deceleration: 2
+  maximumWalkVelocity: 0.5
+  maximumRunVelocity: 2
 --- !u!1 &398941469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,6 +1967,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3501278819548875703, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013527019310965005, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
+      propertyPath: timeBetweenShots
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013527019310965005, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
+      propertyPath: timeBetweenShooting
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7060974752985211928, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.5
@@ -1998,6 +2014,34 @@ PrefabInstance:
     - target: {fileID: 7060974753665549571, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060974754433637228, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
+      propertyPath: gravity
+      value: -9.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060974754433637228, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
+      propertyPath: runSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060974754433637228, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060974754433637228, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
+      propertyPath: walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060974754433637228, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060974754433637228, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
+      propertyPath: groundCheckDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060974754433637230, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
+      propertyPath: m_Mass
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7060974754433637230, guid: 9c032229f3557b440b6b3301623dc11c, type: 3}
       propertyPath: m_Interpolate
@@ -4499,7 +4543,7 @@ GameObject:
   - component: {fileID: 1583917021}
   - component: {fileID: 1583917020}
   - component: {fileID: 1583917019}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
