@@ -9,13 +9,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float runSpeed;
 
+    Rigidbody rb;
 
-    public bool isAlive = true;
+
+    public static bool isAlive = true;
 
 
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
 
 
     }
@@ -23,18 +25,25 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
-        float xMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        float yMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        transform.Translate(xMovement, 0, yMovement);
-
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (isAlive)
         {
-            float xRunMovement = Input.GetAxis("Horizontal") * runSpeed * Time.deltaTime;
-            float yRunMovement = Input.GetAxis("Vertical") * runSpeed * Time.deltaTime;
-            transform.Translate(xRunMovement, 0, yRunMovement);
-            Debug.Log("Juokset t‰ll‰ hetkell‰");
+            float xMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+            float yMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+            transform.Translate(xMovement, 0, yMovement);
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                float xRunMovement = Input.GetAxis("Horizontal") * runSpeed * Time.deltaTime;
+                float yRunMovement = Input.GetAxis("Vertical") * runSpeed * Time.deltaTime;
+                transform.Translate(xRunMovement, 0, yRunMovement);
+                Debug.Log("Juokset t‰ll‰ hetkell‰");
+            }
         }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
+        
 
 
 
@@ -43,29 +52,28 @@ public class Player : MonoBehaviour
 
     
 
-    
-
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("HealthItem"))
+        if (collision.gameObject.CompareTag("HealthItem"))
         {
             HealthBar.health += 20;
             Debug.Log("Sait 20 el‰m‰pistett‰ lis‰‰");
-            Destroy(other.gameObject);
+            Destroy(collision.gameObject);
         }
-        if (other.gameObject.CompareTag("AmmoItem"))
+        if (collision.gameObject.CompareTag("AmmoItem"))
         {
             Debug.Log("Sait lis‰‰ ammuksia");
-            Destroy(other.gameObject);
+            Destroy(collision.gameObject);
         }
     }
+
 
 
     void Death()
     {
         if(HealthBar.health <= 0)
         {
+            rb.velocity = Vector3.zero;
             isAlive = false;
 
         }

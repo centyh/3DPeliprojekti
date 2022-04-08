@@ -10,6 +10,7 @@ public class CharacterSelection : MonoBehaviour
     public GameObject[] characters;
     public int selectedCharacter = 0;
 
+    
 
     public void NextCharacter()
     {

@@ -10,7 +10,7 @@ public class Ammo : MonoBehaviour
 
     public GameObject bullet;
 
-    public static int damage = 20;
+    public static int damage = 40;
 
     public float shootForce;
 
@@ -26,6 +26,9 @@ public class Ammo : MonoBehaviour
     public Transform attackPoint;
 
     bool allowInvoke;
+
+    float attackDelay = 1f;
+    float nextDamageEvent = 0f;
 
     private void Start()
     {
@@ -74,7 +77,12 @@ public class Ammo : MonoBehaviour
         if(readyToShoot && shooting && !reloading && bulletsLeft > 0)
         {
             bulletsShot = 0;
-            Shoot();
+
+            if (Time.time >= nextDamageEvent)
+            {
+                nextDamageEvent = Time.time + attackDelay;
+                Shoot();
+            }
         }
     }
 
@@ -102,7 +110,7 @@ public class Ammo : MonoBehaviour
 
  
         GameObject currentBullet = Instantiate(bullet,  attackPoint.position, Quaternion.identity);
-        Destroy(currentBullet, 2f);
+        Destroy(currentBullet, 1.5f);
 
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithoutSpread.normalized * shootForce, ForceMode.Impulse);
 

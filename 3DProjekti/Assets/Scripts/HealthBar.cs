@@ -7,6 +7,7 @@ public class HealthBar : MonoBehaviour
 {
     private Image healthBar;
     private float maxHealth = 100f;
+    public float currentHealth;
     public static float health;  
 
     void Start()
@@ -19,6 +20,7 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = health / maxHealth;
+        currentHealth = health;
     }
 
     

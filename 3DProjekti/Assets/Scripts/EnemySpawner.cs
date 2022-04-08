@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public Wave[] waves;
     public Transform[] spawnPoints;
 
+
     public enum SpawnState { SPAWNING, WAITING, COUNTING };   
 
     [System.Serializable]
@@ -137,6 +138,11 @@ public class EnemySpawner : MonoBehaviour
         Debug.Log("Spawning enemy: " + enemy.name);
         Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(enemy, sp.position, Quaternion.identity);
+    }
+
+    void RandomEnemy()
+    {
+        
     }
 
 }

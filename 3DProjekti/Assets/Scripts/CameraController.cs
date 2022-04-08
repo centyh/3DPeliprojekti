@@ -16,13 +16,18 @@ public class CameraController : MonoBehaviour
     
     void LateUpdate()
     {
-        mouseX += Input.GetAxis("Mouse X") * rotateSpeed;
-        mouseY -= Input.GetAxis("Mouse Y") * rotateSpeed;
-        mouseY = Mathf.Clamp(mouseY, -35, 60);
+        if (!UIManager.gameIsPaused && Player.isAlive)
+        {
+            mouseX += Input.GetAxis("Mouse X") * rotateSpeed;
+            mouseY -= Input.GetAxis("Mouse Y") * rotateSpeed;
+            mouseY = Mathf.Clamp(mouseY, -35, 60);
 
-        transform.LookAt(target);
+            transform.LookAt(target);
 
-        target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
-        player.rotation = Quaternion.Euler(0, mouseX, 0);
+            target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
+            player.rotation = Quaternion.Euler(0, mouseX, 0);
+        }
+        
     }
+
 }

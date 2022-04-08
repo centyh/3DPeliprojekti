@@ -10,13 +10,16 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject shopView;
 
-    public static bool isPaused = false;
+    public GameObject GameOver;
+
+    public static bool gameIsPaused = false;
+    public bool shopViewOpen = false;
 
     public EnemySpawner enemySpawner;
     public GameManager gameManager;
 
     public Button dmgButton;
-    public int dmgButtonPrice;
+    public float dmgButtonPrice;
     
     public float currentScore;
 
@@ -34,6 +37,7 @@ public class UIManager : MonoBehaviour
         enemySpawner = FindObjectOfType<EnemySpawner>().GetComponent<EnemySpawner>();
         gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
 
+
         pauseMenu.SetActive(false);
 
     }
@@ -49,56 +53,87 @@ public class UIManager : MonoBehaviour
 
         PauseGame();
         ShopView();
-        
+        YouDied();
     }
 
     public void ShopView()
     {
-        if (enemySpawner.waveCountdown != 0 && enemySpawner.nextWave >= 1)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            shopView.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            if (shopViewOpen)
+            {
+                shopView.SetActive(false);
+                shopViewOpen = false;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;   
+            }
+            else
+            {
+                shopView.SetActive(true);
+                shopViewOpen = true;
+                Cursor.visible = true;  
+                Cursor.lockState = CursorLockMode.Confined;
+            }
         }
-        if(enemySpawner.waveCountdown <= 0)
-        {
-            shopView.SetActive(false);
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+
+        //    if (enemySpawner.waveCountdown != 0 && enemySpawner.nextWave >= 1 && !gameIsPaused)
+        //{
+        //    if(Input.GetKeyDown(KeyCode.Tab))
+        //    shopView.SetActive(true);
+        //    Cursor.visible = true;
+        //    Cursor.lockState = CursorLockMode.Confined;
+        //}
+        //if(enemySpawner.waveCountdown <= 0)
+        //{
+        //    shopView.SetActive(false);
+        //    Cursor.visible = false;
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //}
     }
 
     public void PauseGame()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
+            if (gameIsPaused)
             {
-                pauseMenu.SetActive(false);
-                Time.timeScale = 1;
-                isPaused = false;
+                Resume();
                 
             }
             else
             {
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0;
-                isPaused = true;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
+                Pause();
             }           
         }     
     }
 
-    public void ContinueGame()
+    public void Resume()
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
-        isPaused = false;
-        Debug.Log("Continue Game");
+        gameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void Pause()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        gameIsPaused = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    //public void ContinueGame()
+    //{
+    //    pauseMenu.SetActive(false);
+    //    Time.timeScale = 1;
+    //    gameIsPaused = false;
+    //    Debug.Log("Continue Game");
+    //    Cursor.visible = false;
+    //    Cursor.lockState = CursorLockMode.Locked;
+    //}
 
     public void ExitGame()
     {
@@ -111,8 +146,18 @@ public class UIManager : MonoBehaviour
     {
         if(currentScore >= dmgButtonPrice)
         {
-            Ammo.damage += 10;
+            Ammo.damage += 20;
             currentScore -= dmgButtonPrice;
+            dmgButtonPrice += dmgButtonPrice * 0.3f;
         }
+    }
+
+    public void YouDied()
+    {
+        if (!Player.isAlive)
+        {
+            GameOver.SetActive(true);
+        }
+        
     }
 }

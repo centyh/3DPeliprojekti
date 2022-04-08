@@ -42,7 +42,7 @@ public class ItemSpawner : MonoBehaviour
 
             posX = Random.Range(c.bounds.min.x, c.bounds.max.x);
             posZ = Random.Range(c.bounds.min.z, c.bounds.max.z);
-            pos = new Vector3(posX, 1, posZ);
+            pos = new Vector3(posX, 0.5f, posZ);
 
             Destroy(Instantiate(toSpawn, pos, toSpawn.transform.rotation), 10f);
 

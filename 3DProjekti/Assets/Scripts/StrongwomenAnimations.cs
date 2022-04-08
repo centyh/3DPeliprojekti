@@ -13,7 +13,8 @@ public class StrongwomenAnimations : MonoBehaviour
     public float maximumWalkVelocity = 0.5f;
     public float maximumRunVelocity = 2.0f;
 
-
+    float nextAnimEvent = 0f;
+    float animDelay = 1f;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -160,59 +161,26 @@ public class StrongwomenAnimations : MonoBehaviour
         anim.SetFloat("Velocity X", velocityX);
 
 
-
-
-
-        /*
-        if (Input.GetKey(KeyCode.W))
-        {
-            WalkForward();
-            Debug.Log("W:tä painetaan");
-        }
-        else if (Input.GetKeyUp(KeyCode.W))
-        {
-            StopWalkForward();
-            Debug.Log("W:stä päästetty irti");
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            WalkLeft();
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
-        {
-            StopWalkLeft();
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            WalkRight();
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            StopWalkRight();
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            WalkBack();
-        }
-        else if (Input.GetKeyUp(KeyCode.S))
-        {
-            StopWalkBack();
-        }
-
-        
-
-        if(Input.anyKey == false)
-        {
-            Idle();
-        }      
-        */
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            StartCoroutine(Attack());
+            if (Time.time >= nextAnimEvent)
+            {
+                nextAnimEvent = Time.time + animDelay;
+                StartCoroutine(Attack());
+            }
+            
         }
+
+        Death();
+    }
+
+    public void Death()
+    {
+        if(HealthBar.health <= 0)
+        {
+            anim.SetTrigger("Death");
+        }
+        
     }
 
     IEnumerator Attack()
@@ -222,50 +190,5 @@ public class StrongwomenAnimations : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         anim.SetLayerWeight(anim.GetLayerIndex("Attack Layer"), 0);
     }
-    /*
-    
 
-    void Idle()
-    {
-        anim.SetTrigger("Idle");
-    }
-
-    void WalkRight()
-    {
-        anim.SetTrigger("WalkRight");
-    }
-
-    void StopWalkRight()
-    {
-        anim.ResetTrigger("WalkRight");
-    }
-
-    void WalkLeft()
-    {
-        anim.SetTrigger("WalkLeft");
-    }
-    void StopWalkLeft()
-    {
-        anim.ResetTrigger("WalkLeft");
-    }
-
-    void WalkForward()
-    {
-        anim.SetTrigger("WalkForward");
-    }
-
-    void StopWalkForward()
-    {
-        anim.ResetTrigger("WalkForward");
-    }
-
-    void WalkBack()
-    {
-        anim.SetTrigger("WalkBack");
-    }
-    void StopWalkBack()
-    {
-        anim.ResetTrigger("WalkBack");
-    }
-    */
 }
