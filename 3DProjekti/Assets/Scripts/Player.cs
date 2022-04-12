@@ -43,11 +43,15 @@ public class Player : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
         }
+
+        //HealthBar.health = 100;
+        //Debug.Log(isAlive);
+
+        if(HealthBar.health <= 0)
+        {
+            PlayerDeath();
+        }
         
-
-
-
-        Death();
     }
 
     
@@ -69,14 +73,16 @@ public class Player : MonoBehaviour
 
 
 
-    void Death()
+    void PlayerDeath()
     {
-        if(HealthBar.health <= 0)
-        {
-            rb.velocity = Vector3.zero;
-            isAlive = false;
+        rb.velocity = Vector3.zero;
+        isAlive = false;
 
-        }
+        //if (HealthBar.health <= 0)
+        //{
+            
+
+        //}
     }
 
 

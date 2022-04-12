@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StrongwomenAnimations : MonoBehaviour
+public class MagicianAnimations1 : MonoBehaviour
 {
     Animator anim;
     float velocityZ = 0.0f;
@@ -171,17 +171,18 @@ public class StrongwomenAnimations : MonoBehaviour
             
         }
 
-        //Death();
+        if (HealthBar.health <= 0)
+        {
+            anim.SetTrigger("Death");
+        }
+
     }
 
-    //public void Death()
-    //{
-    //    if (HealthBar.health <= 0)
-    //    {
-    //        anim.SetTrigger("Death");
-    //    }
+    public void Death()
+    {
+        
 
-    //}
+    }
 
     IEnumerator Attack()
     {
@@ -190,5 +191,4 @@ public class StrongwomenAnimations : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         anim.SetLayerWeight(anim.GetLayerIndex("Attack Layer"), 0);
     }
-
 }

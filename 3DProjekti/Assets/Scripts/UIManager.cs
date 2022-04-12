@@ -53,7 +53,11 @@ public class UIManager : MonoBehaviour
 
         PauseGame();
         ShopView();
-        YouDied();
+
+        if (!Player.isAlive && HealthBar.health <= 0)
+        {
+            GameOver.SetActive(true);
+        }
     }
 
     public void ShopView()
@@ -154,10 +158,7 @@ public class UIManager : MonoBehaviour
 
     public void YouDied()
     {
-        if (!Player.isAlive)
-        {
-            GameOver.SetActive(true);
-        }
+        
         
     }
 }

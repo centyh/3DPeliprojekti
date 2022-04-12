@@ -10,7 +10,7 @@ public class Infos : MonoBehaviour
     public void NextInfo()
     {
         infos[currentInfo].SetActive(false);
-        currentInfo = (currentInfo + 1) & infos.Length;
+        currentInfo = (currentInfo + 1) % infos.Length;
         infos[currentInfo].SetActive(true);
     }
 

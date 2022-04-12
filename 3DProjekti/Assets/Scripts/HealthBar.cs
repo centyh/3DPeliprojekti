@@ -12,13 +12,16 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
+        
         healthBar = GetComponent<Image>();
         health = maxHealth;
+        Debug.Log(health);
     }
 
 
     void Update()
     {
+        //Debug.Log(health);
         healthBar.fillAmount = health / maxHealth;
         currentHealth = health;
     }

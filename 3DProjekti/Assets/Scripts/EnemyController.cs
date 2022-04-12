@@ -77,9 +77,12 @@ public class EnemyController : MonoBehaviour
     {
         //Jos vihollinen osuu pelaajaan, v‰hennet‰‰n pelaajan healthia 0.3sekunnin v‰lein
         if (collision.gameObject.CompareTag("Player"))
+            
         {
+            Debug.Log("Aika on: " + curTime);
             if (curTime <= 0)
             {
+
                 HealthBar.health -= damage;
                 animator.SetTrigger("Attack");
                 Debug.Log("Osui pelaajaan");
