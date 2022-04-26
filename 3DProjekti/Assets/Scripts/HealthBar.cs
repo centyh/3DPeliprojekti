@@ -21,7 +21,6 @@ public class HealthBar : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(health);
         healthBar.fillAmount = health / maxHealth;
         currentHealth = health;
     }

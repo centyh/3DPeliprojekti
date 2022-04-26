@@ -9,11 +9,12 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     private Rigidbody rb;
 
+    public ParticleSystem bloodEffect = null;
+
     [SerializeField] GameObject playerObj;
     protected NavMeshAgent enemyMesh;
 
     public float damage;
-
     public float health;
     public float maxHealth = 200f;
 
@@ -53,19 +54,25 @@ public class EnemyController : MonoBehaviour
         //Kun bullet-objekti osuu viholliseen, v‰hennet‰‰n vihollisen health
         if (collision.gameObject.CompareTag("Bullet"))
         {
+
+            bloodEffect.Play();
+            Debug.Log("Veriefektin pit‰isi toimia nyt");
+            StartCoroutine(BloodEffect());
             health -= Ammo.damage;
             Debug.Log("Viholliseen osui: " + Ammo.damage);
             Debug.Log("El‰mi‰ j‰ljell‰: " + health);
         }
-        //Jos vihollisen health on 0, asetetaan vihollinen kuolleeksi
+        //Jos vihollisen health on 0, asetetaan vihollinen kuolleeksi ja triggerˆid‰‰n Death-animaatio
         if (health <= 0)
         {
-            uiManager.currentScore += 50;
+            //uiManager.currentScore += 50;
+            uiManager.money += 50;
             animator.SetTrigger("Death");
 
             rb.velocity = Vector3.zero;
             enemyMesh.isStopped = true;
 
+            //Poistetaan vihollisen Collider, jotta v‰ltet‰‰n tˆrm‰yksi‰, kun vihollinen on kuollut
             bool deactiveCollider;
             deactiveCollider = GetComponent<CapsuleCollider>().enabled = false;
             Destroy(gameObject, 3f);
@@ -75,14 +82,14 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        //Jos vihollinen osuu pelaajaan, v‰hennet‰‰n pelaajan healthia 0.3sekunnin v‰lein
+        //Jos vihollinen osuu pelaajaan, v‰hennet‰‰n pelaajan healthia 0.3sekunnin v‰lein, kunnes vihollinen ei en‰‰ osu pelaajaan
         if (collision.gameObject.CompareTag("Player"))
             
         {
             Debug.Log("Aika on: " + curTime);
             if (curTime <= 0)
             {
-
+                //V‰hennet‰‰n pelaajan healthia
                 HealthBar.health -= damage;
                 animator.SetTrigger("Attack");
                 Debug.Log("Osui pelaajaan");
@@ -113,5 +120,13 @@ public class EnemyController : MonoBehaviour
                 animator.SetTrigger("Attack2");
             }
         }
+    }
+
+
+    IEnumerator BloodEffect()
+    {
+
+        yield return new WaitForSeconds(0.5f);
+        bloodEffect.Stop();
     }
 }

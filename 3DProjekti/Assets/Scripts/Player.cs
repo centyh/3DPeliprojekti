@@ -25,12 +25,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        //Jos pelaaja on hengiss‰, voidaan liikkua jokaiseen suuntaan k‰ytt‰m‰ll‰ WASD-n‰pp‰imi‰
         if (isAlive)
         {
             float xMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
             float yMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
             transform.Translate(xMovement, 0, yMovement);
 
+            //Jos liikutaan ja pidet‰‰n Shift-n‰pp‰in painettuna, pelaaja "juoksee"
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 float xRunMovement = Input.GetAxis("Horizontal") * runSpeed * Time.deltaTime;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            //Jos pelaaja ei ole hengiss‰, asetetaan liike 0
             rb.velocity = Vector3.zero;
         }
 

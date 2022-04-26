@@ -22,8 +22,12 @@ public class UIManager : MonoBehaviour
     public float dmgButtonPrice;
     
     public float currentScore;
+    public float money;
+
+    private float timer;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI moneyText;
     public TextMeshProUGUI dmgButtonPriceText;
     public TextMeshProUGUI currentDmgText;
 
@@ -45,11 +49,9 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        currentDmgText.text = "Damage: " + Ammo.damage;
-
-        scoreText.text = "Score: " + currentScore;
+        currentDmgText.text = "Damage: " + Ammo.damage;        
         dmgButtonPriceText.text = "Price: " + dmgButtonPrice;
-
+        moneyText.text = "MONEY: " + money;
 
         PauseGame();
         ShopView();
@@ -57,6 +59,16 @@ public class UIManager : MonoBehaviour
         if (!Player.isAlive && HealthBar.health <= 0)
         {
             GameOver.SetActive(true);
+            Invoke("YouDied", 10f);
+        }
+
+        timer += Time.deltaTime;
+        
+        if(timer > 1f)
+        {
+            currentScore += 1;
+            scoreText.text = "SCORE: " + currentScore;
+            timer = 0;
         }
     }
 
@@ -148,7 +160,7 @@ public class UIManager : MonoBehaviour
 
     public void MoreDamage()
     {
-        if(currentScore >= dmgButtonPrice)
+        if(money >= dmgButtonPrice)
         {
             Ammo.damage += 20;
             currentScore -= dmgButtonPrice;
@@ -158,7 +170,7 @@ public class UIManager : MonoBehaviour
 
     public void YouDied()
     {
-        
+        SceneManager.LoadScene("Highscore");
         
     }
 }

@@ -15,6 +15,7 @@ public class MagicianAnimations1 : MonoBehaviour
 
     float nextAnimEvent = 0f;
     float animDelay = 1f;
+
     void Start()
     {
         anim = GetComponent<Animator>();
