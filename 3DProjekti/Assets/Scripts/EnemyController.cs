@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
 
     public float damage;
     public float health;
-    public float maxHealth = 200f;
+    public float maxHealth;
 
     float curTime = 0f;
     float nextDamage = 0.3f;
@@ -67,6 +67,7 @@ public class EnemyController : MonoBehaviour
         {
             //uiManager.currentScore += 50;
             uiManager.money += 50;
+            uiManager.currentScore += 1;
             animator.SetTrigger("Death");
 
             rb.velocity = Vector3.zero;

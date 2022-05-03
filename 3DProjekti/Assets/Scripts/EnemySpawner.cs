@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public Wave[] waves;
     public Transform[] spawnPoints;
 
+    public UIManager uiManager;
 
     public enum SpawnState { SPAWNING, WAITING, COUNTING };   
 
@@ -17,7 +18,11 @@ public class EnemySpawner : MonoBehaviour
     {
         public string name;
         public Transform enemy;
+        public Transform enemy2;
+        public Transform enemy3;
         public int count;
+        public int count2;
+        public int count3;
         public float rate;
     }
 
@@ -39,6 +44,8 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+
         waveCountdown = timeBetweenWaves;
     }
 
@@ -86,6 +93,7 @@ public class EnemySpawner : MonoBehaviour
     void WaveCompleted()
     {
         Debug.Log("Wave completed");
+        uiManager.currentScore += 50;
 
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
@@ -125,6 +133,21 @@ public class EnemySpawner : MonoBehaviour
         for(int i = 0; i < wave.count; i++)
         {
             SpawnEnemy(wave.enemy);
+
+            yield return new WaitForSeconds(1f / wave.rate);
+        }
+
+        for (int i = 0; i < wave.count2; i++)
+        {
+            SpawnEnemy2(wave.enemy2);
+
+            yield return new WaitForSeconds(1f / wave.rate);
+        }
+
+        for (int i = 0; i < wave.count3; i++)
+        {
+            SpawnEnemy3(wave.enemy3);
+
             yield return new WaitForSeconds(1f / wave.rate);
         }
 
@@ -138,11 +161,20 @@ public class EnemySpawner : MonoBehaviour
         Debug.Log("Spawning enemy: " + enemy.name);
         Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(enemy, sp.position, Quaternion.identity);
+
     }
 
-    void RandomEnemy()
+    void SpawnEnemy2(Transform enemy2)
     {
-        
+        Debug.Log("Spawning enemy: " + enemy2.name);
+        Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(enemy2, sp.position, Quaternion.identity);
     }
 
+    void SpawnEnemy3(Transform enemy3)
+    {
+        Debug.Log("Spawning enemy: " + enemy3.name);
+        Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(enemy3, sp.position, Quaternion.identity);
+    }
 }

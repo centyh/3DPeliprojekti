@@ -17,10 +17,10 @@ public class UIManager : MonoBehaviour
 
     public EnemySpawner enemySpawner;
     public GameManager gameManager;
+    public HealthBar hb;
 
-    public Button dmgButton;
     public float dmgButtonPrice;
-    
+    public float healthButtonPrice;
     public float currentScore;
     public float money;
 
@@ -30,6 +30,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI dmgButtonPriceText;
     public TextMeshProUGUI currentDmgText;
+    public TextMeshProUGUI healthButtonPriceText;
+    public TextMeshProUGUI currentHealthText;
 
     void Start()
     {
@@ -40,6 +42,7 @@ public class UIManager : MonoBehaviour
 
         enemySpawner = FindObjectOfType<EnemySpawner>().GetComponent<EnemySpawner>();
         gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        hb = FindObjectOfType<HealthBar>().GetComponent<HealthBar>();
 
 
         pauseMenu.SetActive(false);
@@ -49,9 +52,14 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        currentDmgText.text = "Damage: " + Ammo.damage;        
-        dmgButtonPriceText.text = "Price: " + dmgButtonPrice;
+        currentDmgText.text = "Damage: " + Ammo.damage;
+        currentHealthText.text = "Max Health: " + hb.maxHealth;
+
+        dmgButtonPriceText.text = "Cost: " + dmgButtonPrice;
+        healthButtonPriceText.text = "Cost: " + healthButtonPrice;
+        
         moneyText.text = "MONEY: " + money;
+        scoreText.text = "SCORE: " + currentScore;
 
         PauseGame();
         ShopView();
@@ -62,14 +70,14 @@ public class UIManager : MonoBehaviour
             Invoke("YouDied", 10f);
         }
 
-        timer += Time.deltaTime;
+        //timer += Time.deltaTime;
         
-        if(timer > 1f)
-        {
-            currentScore += 1;
-            scoreText.text = "SCORE: " + currentScore;
-            timer = 0;
-        }
+        //if(timer > 1f)
+        //{
+        //    currentScore += 1;
+        //    scoreText.text = "SCORE: " + currentScore;
+        //    timer = 0;
+        //}
     }
 
     public void ShopView()
@@ -163,8 +171,19 @@ public class UIManager : MonoBehaviour
         if(money >= dmgButtonPrice)
         {
             Ammo.damage += 20;
-            currentScore -= dmgButtonPrice;
+            money -= dmgButtonPrice;
             dmgButtonPrice += dmgButtonPrice * 0.3f;
+        }
+    }
+
+    public void MoreHealth()
+    {
+        if(money >= healthButtonPrice)
+        {
+            hb.maxHealth += 10;
+            money -= healthButtonPrice;
+            healthButtonPrice += healthButtonPrice * 0.3f;
+            Debug.Log("Current Health: " + hb.maxHealth);
         }
     }
 
