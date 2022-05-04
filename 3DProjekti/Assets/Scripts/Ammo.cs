@@ -108,9 +108,11 @@ public class Ammo : MonoBehaviour
 
         Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
 
+        
  
         GameObject currentBullet = Instantiate(bullet,  attackPoint.position, Quaternion.identity);
         Destroy(currentBullet, 1.5f);
+        
 
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithoutSpread.normalized * shootForce, ForceMode.Impulse);
 
@@ -130,6 +132,7 @@ public class Ammo : MonoBehaviour
         }
         
     }
+
 
     private void ResetShot()
     {

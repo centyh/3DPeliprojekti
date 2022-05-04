@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         //Jos pelaaja on hengissä, voidaan liikkua jokaiseen suuntaan käyttämällä WASD-näppäimiä
         if (isAlive)
