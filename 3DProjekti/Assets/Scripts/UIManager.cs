@@ -7,6 +7,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public AudioSource laughSound;
+
     public GameObject pauseMenu;
     public GameObject shopView;
 
@@ -21,6 +23,7 @@ public class UIManager : MonoBehaviour
 
     public float dmgButtonPrice;
     public float healthButtonPrice;
+    public float dontBuyPrice;
     public float currentScore;
     public float money;
 
@@ -32,6 +35,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI currentDmgText;
     public TextMeshProUGUI healthButtonPriceText;
     public TextMeshProUGUI currentHealthText;
+    public TextMeshProUGUI dontBuyMeText;
 
     void Start()
     {
@@ -59,6 +63,8 @@ public class UIManager : MonoBehaviour
 
         dmgButtonPriceText.text = "Cost: " + dmgButtonPrice;
         healthButtonPriceText.text = "Cost: " + healthButtonPrice;
+
+        dontBuyMeText.text = "Cost: " + dontBuyPrice;
         
         moneyText.text = "MONEY: " + money;
         scoreText.text = "SCORE: " + currentScore;
@@ -159,7 +165,7 @@ public class UIManager : MonoBehaviour
         {
             Ammo.damage += 20;
             money -= dmgButtonPrice;
-            dmgButtonPrice += dmgButtonPrice * 0.3f;
+            dmgButtonPrice += dmgButtonPrice * 0.5f;
         }
     }
 
@@ -169,8 +175,17 @@ public class UIManager : MonoBehaviour
         {
             hb.maxHealth += 10;
             money -= healthButtonPrice;
-            healthButtonPrice += healthButtonPrice * 0.3f;
+            healthButtonPrice += healthButtonPrice * 0.5f;
             Debug.Log("Current Health: " + hb.maxHealth);
+        }
+    }
+
+    public void DontBuy()
+    {
+        if(money >= dontBuyPrice)
+        {
+            money -= dontBuyPrice;
+            laughSound.Play();
         }
     }
 

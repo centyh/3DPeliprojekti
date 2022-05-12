@@ -668,6 +668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   runSpeed: 2.3
+  yPosition: 1
 --- !u!114 &4020386510785419372
 MonoBehaviour:
   m_ObjectHideFlags: 0

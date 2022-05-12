@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float runSpeed;
 
+    public float yPosition = 0f;
+
     Rigidbody rb;
 
 
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
         }
         if(transform.position.y > 0)
         {
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
         }
         else
         {
