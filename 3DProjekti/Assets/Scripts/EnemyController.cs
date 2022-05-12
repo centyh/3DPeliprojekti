@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     private Rigidbody rb;
 
     public ParticleSystem bloodEffect = null;
+    public AudioSource sound;
 
     [SerializeField] GameObject playerObj;
     protected NavMeshAgent enemyMesh;
@@ -30,6 +31,7 @@ public class EnemyController : MonoBehaviour
         uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
         enemyMesh = GetComponent<NavMeshAgent>();
         playerObj = GameObject.FindGameObjectWithTag("Player");
+        sound = GetComponent<AudioSource>();
 
         health = maxHealth;     
     }
@@ -43,6 +45,7 @@ public class EnemyController : MonoBehaviour
         //Jos pelaaja ei ole elossa, pysäytetään enemy ja asetetaan Idle animaatio
         if (!Player.isAlive)
         {
+            enemyMesh.isStopped = true;
             enemyMesh.velocity = Vector3.zero;
             animator.SetTrigger("Idle");
         }
@@ -56,7 +59,6 @@ public class EnemyController : MonoBehaviour
         {
 
             bloodEffect.Play();
-            Debug.Log("Veriefektin pitäisi toimia nyt");
             StartCoroutine(BloodEffect());
             health -= Ammo.damage;
             Debug.Log("Viholliseen osui: " + Ammo.damage);
@@ -65,7 +67,7 @@ public class EnemyController : MonoBehaviour
         //Jos vihollisen health on 0, asetetaan vihollinen kuolleeksi ja triggeröidään Death-animaatio
         if (health <= 0)
         {
-            //uiManager.currentScore += 50;
+            sound.Play();
             uiManager.money += 50;
             uiManager.currentScore += 1;
             animator.SetTrigger("Death");

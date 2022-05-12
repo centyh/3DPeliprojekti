@@ -5,18 +5,37 @@ using UnityEngine;
 public class PickupEffect : MonoBehaviour
 {
     public ParticleSystem pickupEffect = null;
+    public AudioSource pickupSound;
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void Start()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        pickupSound = GetComponent<AudioSource>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
-            pickupEffect.Play();
-            Debug.Log("HEP HEP HEP HEP HEP HEP");
+            pickupSound.Play();
+            StartCoroutine(PickUpEffect());
+            HealthBar.health += 20;
+            Debug.Log("Sait 20 el‰m‰pistett‰ lis‰‰");
+            Destroy(gameObject, 0.4f);
         }
-        else
+        if (other.gameObject.CompareTag("Player"))
         {
-            pickupEffect.Stop();
+            pickupSound.Play();
+            StartCoroutine(PickUpEffect());
+            Debug.Log("Sait lis‰‰ ammuksia");
+            Destroy(gameObject, 0.4f);
         }
+    }
+
+    IEnumerator PickUpEffect()
+    {
+        pickupEffect.Play();
+        yield return new WaitForSeconds(1f);
+        pickupEffect.Stop();
     }
 }

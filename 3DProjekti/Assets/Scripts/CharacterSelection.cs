@@ -10,6 +10,7 @@ public class CharacterSelection : MonoBehaviour
     public GameObject[] characters;
     public int selectedCharacter = 0;
 
+    public GameObject panel;
     
 
     public void NextCharacter()
@@ -33,12 +34,14 @@ public class CharacterSelection : MonoBehaviour
     public void StartGame()
     {
         PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
-        SceneManager.LoadScene("Survival");
+        //SceneManager.LoadScene("Text");
+        StartCoroutine(StartGameDelay());
     }
 
     public IEnumerator StartGameDelay()
     {
-
+        panel.SetActive(true);
         yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Text");
     }
 }

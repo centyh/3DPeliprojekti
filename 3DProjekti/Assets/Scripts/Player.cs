@@ -25,21 +25,26 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+
         //Jos pelaaja on hengiss‰, voidaan liikkua jokaiseen suuntaan k‰ytt‰m‰ll‰ WASD-n‰pp‰imi‰
-        if (isAlive)
+        if (isAlive && !UIManager.gameIsPaused)
         {
             float xMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-            float yMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-            transform.Translate(xMovement, 0, yMovement);
+            float zMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+            transform.Translate(xMovement, 0, zMovement);
 
             //Jos liikutaan ja pidet‰‰n Shift-n‰pp‰in painettuna, pelaaja "juoksee"
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 float xRunMovement = Input.GetAxis("Horizontal") * runSpeed * Time.deltaTime;
-                float yRunMovement = Input.GetAxis("Vertical") * runSpeed * Time.deltaTime;
-                transform.Translate(xRunMovement, 0, yRunMovement);
-                Debug.Log("Juokset t‰ll‰ hetkell‰");
+                float zRunMovement = Input.GetAxis("Vertical") * runSpeed * Time.deltaTime;
+                transform.Translate(xRunMovement, 0, zRunMovement);
+
             }
+        }
+        if(transform.position.y > 0)
+        {
+            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         }
         else
         {
@@ -57,35 +62,12 @@ public class Player : MonoBehaviour
         
     }
 
-    
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("HealthItem"))
-        {
-            HealthBar.health += 20;
-            Debug.Log("Sait 20 el‰m‰pistett‰ lis‰‰");
-            Destroy(collision.gameObject);
-        }
-        if (collision.gameObject.CompareTag("AmmoItem"))
-        {
-            Debug.Log("Sait lis‰‰ ammuksia");
-            Destroy(collision.gameObject);
-        }
-    }
-
-
 
     void PlayerDeath()
     {
         rb.velocity = Vector3.zero;
         isAlive = false;
 
-        //if (HealthBar.health <= 0)
-        //{
-            
-
-        //}
     }
 
 

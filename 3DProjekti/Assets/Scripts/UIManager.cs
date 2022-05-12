@@ -52,6 +52,8 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        PlayerPrefs.SetFloat("Highscore", currentScore);
+
         currentDmgText.text = "Damage: " + Ammo.damage;
         currentHealthText.text = "Max Health: " + hb.maxHealth;
 
@@ -70,14 +72,6 @@ public class UIManager : MonoBehaviour
             Invoke("YouDied", 10f);
         }
 
-        //timer += Time.deltaTime;
-        
-        //if(timer > 1f)
-        //{
-        //    currentScore += 1;
-        //    scoreText.text = "SCORE: " + currentScore;
-        //    timer = 0;
-        //}
     }
 
     public void ShopView()
@@ -89,7 +83,8 @@ public class UIManager : MonoBehaviour
                 shopView.SetActive(false);
                 shopViewOpen = false;
                 Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;   
+                Cursor.lockState = CursorLockMode.Locked;
+                gameIsPaused = false;
             }
             else
             {
@@ -97,6 +92,7 @@ public class UIManager : MonoBehaviour
                 shopViewOpen = true;
                 Cursor.visible = true;  
                 Cursor.lockState = CursorLockMode.Confined;
+                gameIsPaused = true;
             }
         }
 
@@ -149,15 +145,6 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    //public void ContinueGame()
-    //{
-    //    pauseMenu.SetActive(false);
-    //    Time.timeScale = 1;
-    //    gameIsPaused = false;
-    //    Debug.Log("Continue Game");
-    //    Cursor.visible = false;
-    //    Cursor.lockState = CursorLockMode.Locked;
-    //}
 
     public void ExitGame()
     {
