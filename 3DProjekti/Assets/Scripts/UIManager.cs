@@ -27,6 +27,10 @@ public class UIManager : MonoBehaviour
     public float currentScore;
     public float money;
 
+    private int dmgBought = 0;
+    private int healthBought = 0;
+    private int hahaBought = 0;
+
     private float timer;
 
     public TextMeshProUGUI scoreText;
@@ -35,7 +39,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI currentDmgText;
     public TextMeshProUGUI healthButtonPriceText;
     public TextMeshProUGUI currentHealthText;
-    public TextMeshProUGUI dontBuyMeText;
+    public TextMeshProUGUI dontBuyMePriceText;
+    public TextMeshProUGUI dontBuyText;
 
     void Start()
     {
@@ -64,10 +69,25 @@ public class UIManager : MonoBehaviour
         dmgButtonPriceText.text = "Cost: " + dmgButtonPrice;
         healthButtonPriceText.text = "Cost: " + healthButtonPrice;
 
-        dontBuyMeText.text = "Cost: " + dontBuyPrice;
+        dontBuyText.text = "Don't Buy Me";
+        dontBuyMePriceText.text = "Cost: " + dontBuyPrice;
         
         moneyText.text = "MONEY: " + money;
         scoreText.text = "SCORE: " + currentScore;
+
+        if(dmgBought == 5)
+        {
+            dmgButtonPriceText.text = "Out of stock!";
+        }
+        if(healthBought == 5)
+        {
+            healthButtonPriceText.text = "Out of stock!";
+        }
+        if(hahaBought == 1)
+        {
+            dontBuyText.text = "We told you not to buy";
+            dontBuyMePriceText.text = "Hahaha!";
+        }
 
         PauseGame();
         ShopView();
@@ -161,29 +181,32 @@ public class UIManager : MonoBehaviour
 
     public void MoreDamage()
     {
-        if(money >= dmgButtonPrice)
+        if(money >= dmgButtonPrice && dmgBought < 5)
         {
-            Ammo.damage += 20;
+            dmgBought++;
+            Ammo.damage += 10;
             money -= dmgButtonPrice;
-            dmgButtonPrice += dmgButtonPrice * 0.5f;
+            dmgButtonPrice += dmgBought * 100f;
         }
     }
 
     public void MoreHealth()
     {
-        if(money >= healthButtonPrice)
+        if(money >= healthButtonPrice && healthBought < 5)
         {
+            healthBought++;
             hb.maxHealth += 10;
             money -= healthButtonPrice;
-            healthButtonPrice += healthButtonPrice * 0.5f;
+            healthButtonPrice += healthBought * 50f;
             Debug.Log("Current Health: " + hb.maxHealth);
         }
     }
 
     public void DontBuy()
     {
-        if(money >= dontBuyPrice)
+        if(money >= dontBuyPrice && hahaBought < 1)
         {
+            hahaBought++;
             money -= dontBuyPrice;
             laughSound.Play();
         }

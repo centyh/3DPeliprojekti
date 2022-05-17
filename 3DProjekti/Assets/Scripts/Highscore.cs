@@ -20,10 +20,8 @@ public class Highscore : MonoBehaviour
     void Awake()
     {
         float score = PlayerPrefs.GetFloat("Highscore");
-        scoreText.text = "Score: " + score;
+        scoreText.text = "" + score;
 
-        string name = PlayerPrefs.GetString("Name");
-        nameText.text = "Name: " + name;
     }
 
     public void SetPlayerName()

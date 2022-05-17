@@ -1129,8 +1129,8 @@ MonoBehaviour:
   sound: {fileID: 0}
   playerObj: {fileID: 0}
   damage: 5
-  health: 100
-  maxHealth: 100
+  health: 0
+  maxHealth: 120
 --- !u!195 &242980281018382343
 NavMeshAgent:
   m_ObjectHideFlags: 0

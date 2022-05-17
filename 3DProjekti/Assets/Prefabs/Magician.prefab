@@ -811,7 +811,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 1
 --- !u!95 &8324066967742145877
 Animator:
@@ -846,6 +846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   runSpeed: 2.3
+  yPosition: 0
 --- !u!114 &8318514602449795836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2138,7 +2139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7365935913401219559}
   - component: {fileID: 7833915776531463540}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SphereCollider
   m_TagString: PlayerCollider
   m_Icon: {fileID: 0}

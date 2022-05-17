@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public float yPosition = 0f;
 
     Rigidbody rb;
+    private UIManager uiM;
 
 
     public static bool isAlive = true;
@@ -20,8 +21,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-
+        uiM = FindObjectOfType<UIManager>().GetComponent<UIManager>();
     }
 
 
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         }
         if(transform.position.y > 0)
         {
-            transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
+            //transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
         }
         else
         {
@@ -72,7 +72,19 @@ public class Player : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("HealthItem"))
+        {
+            HealthBar.health += 20;
+            Debug.Log("Sait 20 el‰m‰pistett‰ lis‰‰" + HealthBar.health);
+        }
+        if (other.gameObject.CompareTag("AmmoItem"))
+        {
+            uiM.money += 30;
+            Debug.Log("Sait lis‰‰ RAHAA" + uiM.money);
+        }
+    }
 
-   
 }
 

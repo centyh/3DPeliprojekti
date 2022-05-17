@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4057864192536161614}
   - component: {fileID: 8869611064993903066}
   - component: {fileID: 4805160504658103780}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle Pickup Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4886,7 +4886,7 @@ GameObject:
   - component: {fileID: 5787528227474526406}
   - component: {fileID: 1442233409762067449}
   - component: {fileID: 7963304291457849427}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AmmoItem
   m_TagString: AmmoItem
   m_Icon: {fileID: 0}
@@ -5003,6 +5003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupEffect: {fileID: 8869611064993903066}
+  pickupSound: {fileID: 0}
 --- !u!82 &7963304291457849427
 AudioSource:
   m_ObjectHideFlags: 0

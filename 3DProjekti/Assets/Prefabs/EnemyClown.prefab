@@ -741,7 +741,7 @@ MonoBehaviour:
   bloodEffect: {fileID: 8789215889633323638}
   sound: {fileID: 0}
   playerObj: {fileID: 6058124168477774157, guid: 3e5c0948fb81ab24185d5f4dc5d1bc90, type: 3}
-  damage: 5
+  damage: 10
   health: 0
   maxHealth: 200
 --- !u!195 &1896083900

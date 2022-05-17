@@ -9,7 +9,7 @@ public class ItemSpawner : MonoBehaviour
     public List<GameObject> spawnPool;
     public GameObject quad;
 
-    float spawnTime = 30f;
+    float spawnTime;
     float curSpawnTime;
 
     private void Start()
@@ -33,10 +33,13 @@ public class ItemSpawner : MonoBehaviour
         float posX, posZ;
         Vector3 pos;
 
+        
+        
         curSpawnTime -= Time.deltaTime;
 
         if (curSpawnTime <= 0)
         {
+            spawnTime = Random.Range(30, 50);
             randomItem = Random.Range(0, spawnPool.Count);
             toSpawn = spawnPool[randomItem];
 
@@ -47,6 +50,7 @@ public class ItemSpawner : MonoBehaviour
             Destroy(Instantiate(toSpawn, pos, toSpawn.transform.rotation), 10f);
 
             curSpawnTime = spawnTime;
+
 
             Debug.Log("Spawnattu: " + spawnPool[randomItem]);
 
